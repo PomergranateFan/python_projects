@@ -1,3 +1,19 @@
+import tkinter as tk
+from tkinter import filedialog
+from tkinter import messagebox
+
+from caesar_encrypt import caesar_encrypt
+from caesar_decrypt import caesar_decrypt
+
+
+from vigenere_decrypt import vigenere_decrypt
+from vigenere_encrypt import vigenere_encrypt
+
+
+from vernam_encrypt import vernam_encrypt
+from vernam_decrypt import vernam_decrypt
+
+
 class Application(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -40,6 +56,7 @@ class Application(tk.Frame):
         self.decrypt_button.grid(row=4, column=2, padx=5, pady=5, sticky=tk.W)
         self.quit_button = tk.Button(self, text="Quit", fg="red", command=self.master.destroy)
         self.quit_button.grid(row=5, column=2, padx=5, pady=5)
+
     def browse_input_file(self):
         """Open file dialog to select input file"""
         self.input_file_path = filedialog.askopenfilename()
@@ -71,5 +88,24 @@ class Application(tk.Frame):
         with open(self.output_file_path, "w") as f:
             f.write(cipher_text)
         messagebox.showinfo("Encryption", "Encryption successful!")
+
+    def decrypt(self):
+        """Decrypt input file and save to output file"""
+        plain_text = ""
+        with open(self.input_file_path, "r") as f:
+            cipher_text = f.read().strip()
+        key = self.key_entry.get()
+        cipher_type = self.cipher_variable.get()
+
+        if cipher_type == "Caesar":
+            plain_text = caesar_decrypt(cipher_text, int(key))
+        elif cipher_type == "Vigenere":
+            plain_text = vigenere_decrypt(cipher_text, key)
+        elif cipher_type == "Vernam":
+            plain_text = vernam_decrypt(cipher_text, key)
+
+        with open(self.output_file_path, "w") as f:
+            f.write(plain_text)
+        messagebox.showinfo("Decryption", "Decryption successful!")
 
 
