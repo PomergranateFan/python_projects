@@ -1,7 +1,7 @@
 # Project cryptographer on python
 
 ## How to use
-
+For start: `./script.sh`
 ## Project structure
 
 ### caesar_encrypt
