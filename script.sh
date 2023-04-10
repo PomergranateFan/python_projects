@@ -2,11 +2,11 @@
 
 python3 -m venv env
 
-source env/bin/active
+source env/bin/activate
 
-pip install -r requiremets.txt
+pip install -r requirements.txt
 
 python3 main.py
 
-deactiavate
+deactivate
 
