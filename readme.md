@@ -1,5 +1,6 @@
 # Project cryptographer on python
-
+## info
+This applcation can encrypt and decrypt texts from files. It allows tou to use three types of cipher: Caesar, Vigenere and Vernam. The interface was implemented with Tkinter.
 ## How to use
 For start: `./script.sh`
 ## Project structure
